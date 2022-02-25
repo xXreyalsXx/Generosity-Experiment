@@ -1,12 +1,7 @@
-# sign up details
-import random
-
-# defining user number
 # imports
 import pickle
 import random
 
-# user signup code
 # defining user number
 user_number = 0
 
