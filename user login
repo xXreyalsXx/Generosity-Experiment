@@ -1,0 +1,34 @@
+# imports
+import hashlib
+import pickle
+
+# loading saved UserInfo
+with open('saved_dictionary.pkl', 'rb') as f:
+    UserInfo = pickle.load(f)
+
+# asking for login username and password
+login_username = input("what is your username?: ")
+login_password = input("what is your password?: ")
+
+# converting the string to bytes
+encoded_login_username = login_username.encode(encoding='UTF-8', errors='strict')
+encoded_login_password = login_password.encode(encoding='UTF-8', errors='strict')
+
+# hashing the login username and password
+hashed_login_username = hashlib.blake2b(encoded_login_username).hexdigest()
+hashed_login_password = hashlib.blake2b(encoded_login_password).hexdigest()
+
+
+# finding if the given username is in UserInfo
+def getpath(UserInfo, value, prepath=()):
+    for k, v in UserInfo.items():
+        path = prepath + (k,)
+        if v == 1:  # found value
+            return path
+        elif hasattr(v, 'items'):  # v is a dict
+            p = getpath(v, value, path)  # recursive call
+            if p is not None:
+                return p
+
+
+print(getpath(UserInfo, 'tyler'))
