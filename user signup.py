@@ -15,7 +15,6 @@ user_IDs = [0, ]
 # user_coins variable
 user_coins = 0
 
-# while loop so the dictionaries and lists don't get reset
 # getting username
 username = input("what would you like your username to be?: ")
 
