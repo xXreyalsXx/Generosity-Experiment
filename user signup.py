@@ -47,7 +47,7 @@ hashed_username = hash(username)
 
 # user info nested dictionaries
 user_number += 1
-UserInfo[user_number] = {'username': username, 'password': hashed_password, 'user_ID': hashed_user_ID, 'user_number': user_number}
+UserInfo[user_number] = {'username': hashed_username, 'password': hashed_password, 'user_ID': hashed_user_ID, 'user_number': user_number}
 
 # downloading UserInfo
 with open('saved_dictionary.pkl', 'wb') as f:
