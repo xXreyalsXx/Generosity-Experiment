@@ -52,8 +52,3 @@ UserInfo[user_number] = {'username': username, 'password': hashed_password, 'use
 # downloading UserInfo
 with open('saved_dictionary.pkl', 'wb') as f:
     pickle.dump(UserInfo, f)
-
-# user login code
-# the username and password that the user is trying to  log in with
-login_username = input("what is your username?")
-login_password = input("what is your password")
