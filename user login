@@ -3,7 +3,7 @@ import hashlib
 import pickle
 
 # loading saved UserInfo
-with open('saved_dictionary.pkl', 'rb') as f:
+with open('UserInfo.pkl', 'rb') as f:
     UserInfo = pickle.load(f)
 
 # asking for login username and password
@@ -18,17 +18,18 @@ encoded_login_password = login_password.encode(encoding='UTF-8', errors='strict'
 hashed_login_username = hashlib.blake2b(encoded_login_username).hexdigest()
 hashed_login_password = hashlib.blake2b(encoded_login_password).hexdigest()
 
+# defining user number so that it switches users in the for loop
+user_number = int(input("what is your user number?: "))
 
-# finding if the given username is in UserInfo
-def getpath(UserInfo, value, prepath=()):
-    for k, v in UserInfo.items():
-        path = prepath + (k,)
-        if v == 1:  # found value
-            return path
-        elif hasattr(v, 'items'):  # v is a dict
-            p = getpath(v, value, path)  # recursive call
-            if p is not None:
-                return p
+# creating keys variable for the UserInfo dictionary
+keys = UserInfo.keys()
 
-
-print(getpath(UserInfo, 'tyler'))
+# for loop to search through the sub-dictionaries in UserInfo
+for keys in UserInfo:
+    username = (UserInfo[user_number]['username'])
+    password = (UserInfo[user_number]['password'])
+if hashed_login_username == username and hashed_login_password == password:
+    print("welcome " + login_username)
+else:
+    print("Hmmm, we didn't recognise that username, password, and user number combination.")
+    print("Maybe you typed something incorrectly, or you forgot to create and account")
